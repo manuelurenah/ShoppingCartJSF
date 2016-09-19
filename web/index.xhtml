@@ -1,16 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
+<html lang="#{localeBean.selectedLang}"
+      xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
+<f:view locale="#{localeBean.selectedLang}">
     <h:head>
         <title>JSF Shopping Cart</title>
     </h:head>
     <h:body>
-        <h1>Shopping Cart</h1>
-        <p:button value="Hello" icon="fa fa-star" styleClass="ui-priority-primary" />
+        <h:form>
+            <p:selectOneMenu value="#{localeBean.selectedLang}" valueChangeListener="#{localeBean.cambiarIdioma}" onchange="submit()">
+                <f:selectItems value="#{localeBean.langMap}" />
+            </p:selectOneMenu>
+        </h:form>
+        <h1><h:outputText value="#{msg.title_message}" /></h1>
     </h:body>
+</f:view>
 </html>

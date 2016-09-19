@@ -18,7 +18,7 @@ import java.util.prefs.Preferences;
 public class IndexView implements Serializable {
 
     @PostConstruct
-    public void checkFirstRun() throws Exception {
+    public void checkFirstRun() {
         Preferences userPrefs = Preferences.userRoot();
         // userPrefs.putBoolean("first_run", true);
         Boolean isFirstRun = userPrefs.getBoolean("first_run", true);
@@ -27,9 +27,16 @@ public class IndexView implements Serializable {
             System.out.println("running for the first time");
             User firstUser = new User("Administrator", "", "admin", "admin", true);
             UserHandler userHandler = UserHandler.getInstance();
-            userHandler.insertIntoDatabase(firstUser);
+            try {
+                userHandler.insertIntoDatabase(firstUser);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             userPrefs.putBoolean("first_run", false);
         }
     }
 
+    public IndexView() {
+//        checkFirstRun();
+    }
 }
