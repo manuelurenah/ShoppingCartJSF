@@ -7,9 +7,37 @@
     <groupId>com.cookiebutter.jsf</groupId>
     <artifactId>ShoppingCartJSF</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>war</packaging>
+    <repositories>
+        <repository>
+            <id>prime-repo</id>
+            <name>PrimeFaces Maven Repository</name>
+            <url>http://repository.primefaces.org</url>
+            <layout>default</layout>
+        </repository>
+    </repositories>
+
+
 
     <build>
         <plugins>
+            <plugin>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.3</version>
+                <configuration>
+                    <warSourceDirectory>web</warSourceDirectory>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                    <webResources>
+                        <resource>
+                            <directory>lib</directory>
+                            <includes>
+                                <include>**/*.jar</include>
+                            </includes>
+                            <targetPath>WEB-INF/lib</targetPath>
+                        </resource>
+                    </webResources>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -30,9 +58,9 @@
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.primefaces.extensions/all-themes -->
         <dependency>
-            <groupId>org.primefaces.extensions</groupId>
+            <groupId>org.primefaces.themes</groupId>
             <artifactId>all-themes</artifactId>
-            <version>1.0.8</version>
+            <version>1.0.10</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/com.h2database/h2 -->
         <dependency>
@@ -48,5 +76,5 @@
         </dependency>
 
     </dependencies>
-    
+
 </project>
