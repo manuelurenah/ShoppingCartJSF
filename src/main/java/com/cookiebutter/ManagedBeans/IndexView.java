@@ -36,7 +36,7 @@ public class IndexView implements Serializable {
         }
     }
 
-    public IndexView() {
-//        checkFirstRun();
+    public String toAvailableProducts() {
+        return "availableProducts?faces-redirect=true";
     }
 }
