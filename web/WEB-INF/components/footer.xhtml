@@ -1,0 +1,19 @@
+<ui:component xmlns="http://www.osgi.org/xmlns/scr/v1.0.0"
+              xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+              xmlns:h="http://xmlns.jcp.org/jsf/html"
+              xmlns:p="http://primefaces.org/ui"
+              xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:form>
+        <h:outputLabel for="chng_lang" value="#{msg.change_language_title}" />
+        <p:selectOneMenu id="chng_lang" value="#{localeBean.selectedLang}" valueChangeListener="#{localeBean.changeLanguage}" onchange="submit()">
+            <f:selectItems value="#{localeBean.langMap}" />
+        </p:selectOneMenu>
+        <p>
+            Programación Web Avanzada - ISC-517 - 2016
+            (c) All Rights Reserved
+            Luis E. Rojas - 20120178
+            Manuel E. Ureña - 20120596
+        </p>
+    </h:form>
+</ui:component>

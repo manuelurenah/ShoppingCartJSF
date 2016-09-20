@@ -36,7 +36,9 @@ public class IndexView implements Serializable {
         }
     }
 
+    public String toIndex() { return "index.xhtml"; }
     public String toAvailableProducts() {
-        return "availableProducts?faces-redirect=true";
+        return "availableProducts.xhtml";
     }
+    public String toAdminPage() { return "admin.xhtml"; }
 }
