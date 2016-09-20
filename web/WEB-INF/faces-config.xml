@@ -9,7 +9,7 @@
             <supported-locale>es</supported-locale>
         </locale-config>
         <resource-bundle>
-            <base-name>com.cookiebutter.i18n.messages</base-name>
+            <base-name>i18n.messages</base-name>
             <var>msg</var>
         </resource-bundle>
     </application>
