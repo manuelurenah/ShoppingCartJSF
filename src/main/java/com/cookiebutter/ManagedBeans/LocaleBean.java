@@ -44,7 +44,7 @@ public class LocaleBean {
         this.langMap = langMap;
     }
 
-    public void cambiarIdioma(ValueChangeEvent event) {
+    public void changeLanguage(ValueChangeEvent event) {
         FacesContext.getCurrentInstance().getViewRoot().setLocale(new Locale(selectedLang));
     }
 

@@ -14,31 +14,45 @@
     <h:body>
         <h:form>
             <p:growl id="growl"/>
+            <p:panelGrid columns="1" layout="grid">
 
-            <p:menubar>
-                <p:menuitem value="#{msg.products_menu_title}" action="#{index.toAvailableProducts}" icon="fa fa-archive" />
-
-                <f:facet name="options">
-                    <p:inputText style="margin-right:10px" placeholder="#{msg.search_title}"/>
-                    <p:commandButton onclick="PF('dlg').show();" type="button" value="#{msg.login_title}" icon="fa fa-user" />
+                <f:facet name="header">
+                    <p:row>
+                        <p:column colspan="12">
+                            <p:menubar>
+                                <p:menuitem value="#{msg.products_menu_title}" action="#{index.toAvailableProducts}" icon="fa fa-archive" />
+                                <f:facet name="options">
+                                    <p:inputText style="margin-right:10px" placeholder="#{msg.search_title}"/>
+                                    <p:commandButton onclick="PF('dlg').show();" type="button" value="#{msg.login_title}" icon="fa fa-user" />
+                                </f:facet>
+                            </p:menubar>
+                        </p:column>
+                    </p:row>
                 </f:facet>
-            </p:menubar>
 
-            <p:dialog header="#{msg.login_title}" widgetVar="dlg" modal="true" resizable="false">
-                <h:panelGrid columns="2" cellpadding="5">
-                    <h:outputLabel for="username" value="#{msg.username_title}" />
-                    <p:inputText id="username" value="#{loginBean.username}" required="true" label="username" />
+                <p:row>
+                    <p:selectOneMenu value="#{localeBean.selectedLang}" valueChangeListener="#{localeBean.changeLanguage}" onchange="submit()">
+                        <f:selectItems value="#{localeBean.langMap}" />
+                    </p:selectOneMenu>
+                </p:row>
 
-                    <h:outputLabel for="password" value="#{msg.password_title}" />
-                    <p:password id="password" value="#{loginBean.password}" required="true" label="password" />
+                <p:dialog header="#{msg.login_title}" widgetVar="dlg" modal="true" resizable="false">
+                    <h:panelGrid columns="2" cellpadding="5">
+                        <h:outputLabel for="username" value="#{msg.username_title}" />
+                        <p:inputText id="username" value="#{loginBean.username}" required="true" label="username" />
 
-                    <f:facet name="footer">
-                        <p:commandButton value="#{msg.login_button}" update="growl" actionListener="#{loginBean.login}"
-                                         oncomplete="handleLoginRequest(xhr, status, args)" />
-                        <p:commandButton value="#{msg.register_button}" action="#{loginBean.register()}"/>
-                    </f:facet>
-                </h:panelGrid>
-            </p:dialog>
+                        <h:outputLabel for="password" value="#{msg.password_title}" />
+                        <p:password id="password" value="#{loginBean.password}" required="true" label="password" />
+
+                        <f:facet name="footer">
+                            <p:commandButton value="#{msg.login_button}" update="growl" actionListener="#{loginBean.login}"
+                                             oncomplete="handleLoginRequest(xhr, status, args)" />
+                            <p:commandButton value="#{msg.register_button}" action="#{loginBean.register()}"/>
+                        </f:facet>
+                    </h:panelGrid>
+                </p:dialog>
+
+            </p:panelGrid>
         </h:form>
     </h:body>
 </f:view>
