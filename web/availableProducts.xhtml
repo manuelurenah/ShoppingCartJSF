@@ -14,9 +14,27 @@
     <ui:include src="WEB-INF/components/navbar.xhtml" />
 
     <ui:define name="body">
-        <h:panelGrid columns="1" cellpadding="10">
-            <h1>Products Page View</h1>
-        </h:panelGrid>
+        <h1>Products Page View</h1>
+        <p:button outcome="productForm" value="Add Product"/>
+        <p:dataGrid value="#{productsBean.productService.products}"
+                     var="product"
+                     paginator="true"
+                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                     rowsPerPageTemplate="5,10,15">
+            <f:facet name="header">
+                ${msg.products_menu_title}
+            </f:facet>
+            <b:row>
+                <b:column colXs="3">
+
+                </b:column>
+                <b:column colXs="9">
+                    <h3>${product.name}</h3>
+                    <p>${product.description}</p>
+                    <p> GO TO LINK </p>
+                </b:column>
+            </b:row>
+        </p:dataGrid>
     </ui:define>
 
     <ui:define name="footer">
