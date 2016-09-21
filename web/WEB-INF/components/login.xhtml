@@ -9,39 +9,39 @@
         <b:container layout="fluid">
             <b:panel title="#{msg.login_title}" look="primary">
                 <b:row>
-                    <b:column medium-screen="2">
+                    <b:column medium-screen="3">
                         <h:outputLabel value="#{msg.username_title}" for="username"/>
                     </b:column>
-                    <b:column medium-screen="4">
+                    <b:column medium-screen="9">
                         <b:inputText id="username" value="#{loginBean.username}" ajax="true" autocomplete="false" update="@(.message)" />
                     </b:column>
                     <f:facet name="prepend">
                         <b:icon name="user" />
                     </f:facet>
-                    <b:column medium-screen="6" style-class="message">
+                    <b:column medium-screen="12" style-class="message">
                         <b:message for="username" />
                     </b:column>
                 </b:row>
                 <b:row>
-                    <b:column medium-screen="2">
+                    <b:column medium-screen="3">
                         <h:outputLabel value="#{msg.password_title}" for="password" />
                     </b:column>
-                    <b:column medium-screen="4">
+                    <b:column medium-screen="9">
                         <b:inputSecret id="password" value="#{loginBean.password}" ajax="true" autocomplete="false" update="@(.message)" />
                     </b:column>
                     <f:facet name="prepend">
                         <b:iconAwesome name="key" />
                     </f:facet>
-                    <b:column medium-screen="6" styleClass="message">
+                    <b:column medium-screen="12" styleClass="message">
                         <b:message for="password" />
                     </b:column>
                 </b:row>
                 <b:row>
-                    <b:column span="2" offset="2">
+                    <b:column colSm="3" offset="3">
                         <b:commandButton value="#{msg.login_button}" action="#{loginBean.login()}" update="@form" look="primary"
                                          style="width:100%" validateClient="true"/>
                     </b:column>
-                    <b:column span="2">
+                    <b:column colSm="3">
                         <b:commandButton value="#{msg.register_button}" action="#{loginBean.register()}" update="@form"
                                          look="danger" style="width:100%" validateClient="true"/>
                     </b:column>

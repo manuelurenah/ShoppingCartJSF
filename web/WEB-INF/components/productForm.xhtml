@@ -1,0 +1,46 @@
+<ui:component xmlns="http://www.osgi.org/xmlns/scr/v1.0.0"
+              xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+              xmlns:h="http://xmlns.jcp.org/jsf/html"
+              xmlns:p="http://primefaces.org/ui"
+              xmlns:b="http://bootsfaces.net/ui"
+              xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:form>
+        <b:container layout="fluid">
+            <b:panel title="#{productsBean.id != -1 ? msg.product_edit_title : msg.product_add_title}" look="primary">
+                <b:row>
+                    <b:column colXs="12" colMd="2">
+                        <h:outputLabel value="#{msg.products_form_product_name}" for="name"/>
+                    </b:column>
+                    <b:column colXs="12" colMd="9">
+                        <b:inputText id="name" value="#{productsBean.name}" required="true" />
+                    </b:column>
+                    <b:column colXs="12">
+                        <b:message for="name"/>
+                    </b:column>
+                </b:row>
+                <b:row>
+                    <b:column colXs="12" colMd="2">
+                        <h:outputLabel value="#{msg.products_form_product_description}" for="desc"/>
+                    </b:column>
+                    <b:column colXs="12" colMd="9">
+                        <b:inputText id="desc" value="#{productsBean.description}" required="true" />
+                    </b:column>
+                    <b:column colXs="12">
+                        <b:message for="desc"/>
+                    </b:column>
+                </b:row>
+                <b:row>
+                    <b:column span="4" offset="2">
+                        <b:commandButton value="#{msg.form_save}" action="#{productsBean.processForm()}" update="@form" look="primary"
+                                         style="width:100%" validateClient="true" />
+                    </b:column>
+                    <b:column span="4">
+                        <b:button value="#{msg.form_cancel}" outcome="availableProducts" look="danger" style="width:100%" />
+                    </b:column>
+                </b:row>
+            </b:panel>
+        </b:container>
+    </h:form>
+
+</ui:component>

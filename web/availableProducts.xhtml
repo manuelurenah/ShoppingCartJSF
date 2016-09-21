@@ -15,7 +15,7 @@
 
     <ui:define name="body">
         <h1>Products Page View</h1>
-        <p:button outcome="productForm" value="Add Product"/>
+        <b:button look="primary" outcome="productForm" value="Add Product"/>
         <p:dataGrid value="#{productsBean.productService.products}"
                      var="product"
                      paginator="true"

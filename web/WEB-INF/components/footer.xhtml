@@ -8,10 +8,10 @@
     <h:form>
         <b:panel layout="fluid">
             <b:row>
-                <b:column colXs="4" colMd="1">
+                <b:column colXs="6">
                     <h:outputLabel for="chng_lang" value="#{msg.change_language_title}" />
                 </b:column>
-                <b:column span="2">
+                <b:column colXs="6">
                     <p:selectOneMenu id="chng_lang" style="width:100%" value="#{localeBean.selectedLang}"
                                      valueChangeListener="#{localeBean.changeLanguage}" onchange="submit()">
                         <f:selectItems value="#{localeBean.langMap}" />
@@ -19,11 +19,14 @@
                 </b:column>
             </b:row>
             <b:row>
-                <b:column medium-screen="2">
-                    <p>
+                <b:column colXs="12">
+                    <p style="text-align: center">
                         Programación Web Avanzada - ISC-517 - 2016
+                        <br/>
                         (c) All Rights Reserved
+                        <br/>
                         Luis E. Rojas - 20120178
+                        <br/>
                         Manuel E. Ureña - 20120596
                     </p>
                 </b:column>

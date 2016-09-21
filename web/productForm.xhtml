@@ -14,30 +14,7 @@
     <ui:include src="WEB-INF/components/navbar.xhtml" />
 
     <ui:define name="body">
-        <h:form enctype="multipart/form-data">
-            <p:panel id="panel" header="Add new product">
-                <p:messages id="msgs" />
-
-                <p:outputLabel for="name" value="#{msg.products_form_product_name}" />
-                <p:inputText id="name" value="#{productsBean.name}" required="true" label="Name">
-                    <f:validateLength minimum="2" />
-                </p:inputText>
-                <p:message for="name" display="icon" />
-
-                <p:outputLabel for="description" value="#{msg.products_form_product_description}" />
-                <p:inputText id="description" value="#{productsBean.description}" label="Description" required="true">
-                    <f:validateLength minimum="2" />
-                </p:inputText>
-                <p:message for="description" id="msgDescription" display="icon" />
-
-                <p:outputLabel for="fileUpload" value="#{msg.products_form_product_images}" />
-                <p:fileUpload fileUploadListener="#{productsBean.handleFileUpload}" mode="advanced" dragDropSupport="true"
-                              multiple="true" id="fileUpload"  sizeLimit="1000000" fileLimit="3" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
-                <p:message for="fileUpload" id="msgFileUpload" display="icon" />
-
-                <p:commandButton update="panel" actionListener="#{productsBean.processForm()}" action="availableProducts"/>
-            </p:panel>
-        </h:form>
+        <ui:include src="WEB-INF/components/productForm.xhtml" />
     </ui:define>
 
     <ui:define name="footer">
