@@ -29,10 +29,6 @@ public class ProductService{
 
 
     public ProductService() {
-        if(products == null) {
-            products = new ArrayList<>();
-//            setProducts(products);
-        }
     }
 
 //    @Override
@@ -84,6 +80,9 @@ public class ProductService{
 
     public List<Product> getProducts() {
         products = (ArrayList<Product>)FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("products");
+        if(products == null) {
+            products = new ArrayList<>();
+        }
         filteredProducts = products;
         return products;
     }
@@ -122,6 +121,7 @@ public class ProductService{
     }
 
     public void setProducts(List<Product> products) {
+        this.products = products;
         FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("products", products);
     }
 }

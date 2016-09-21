@@ -7,7 +7,7 @@
 
     <h:form>
         <b:container layout="fluid">
-            <b:panel title="#{productsBean.id != -1 ? msg.product_edit_title : msg.product_add_title}" look="primary">
+            <b:panel title="#{productsBean.id != -1 ? msg.add_message : msg.edit_message} #{msg.products_menu_title}" look="primary">
                 <b:row>
                     <b:column colXs="12" colMd="2">
                         <h:outputLabel value="#{msg.products_form_product_name}" for="name"/>
@@ -28,6 +28,13 @@
                     </b:column>
                     <b:column colXs="12">
                         <b:message for="desc"/>
+                    </b:column>
+                </b:row>
+                <b:row>
+                    <b:column colXs="12">
+                        <p:fileUpload fileUploadListener="#{productsBean.processForm}" mode="advanced" dragDropSupport="true"
+                                      multiple="true" update="messages" sizeLimit="100000" fileLimit="3" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+                        <p:growl id="messages" showDetail="true" />
                     </b:column>
                 </b:row>
                 <b:row>

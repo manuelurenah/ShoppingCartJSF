@@ -5,8 +5,10 @@ import com.cookiebutter.PersistenceHandlers.ProductService;
 import org.primefaces.event.FileUploadEvent;
 
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import java.util.ArrayList;
 
 /**
@@ -27,7 +29,10 @@ public class ProductsBean {
 
     public void handleFileUpload(FileUploadEvent event) {
         System.out.println(event.getFile().getFileName());
+        FacesMessage message = new FacesMessage("Succesful", event.getFile().getFileName() + " was uploaded.");
+        FacesContext.getCurrentInstance().addMessage(null, message);
         getImages().add(event.getFile().getContents());
+
     }
 
     public ProductService getProductService() {
