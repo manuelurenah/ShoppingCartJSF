@@ -1,22 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html lang="#{localeBean.selectedLang}"
-      xmlns="http://www.w3.org/1999/xhtml"
+<html lang="#{localeBean.selectedLang}" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
       xmlns:b="http://bootsfaces.net/ui"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <ui:composition template="WEB-INF/templates/template_default.xhtml">
-    <ui:define name="pageTitle">Login</ui:define>
+    <ui:define name="pageTitle">#{msg.register_title}</ui:define>
 
     <ui:define name="header">
-        <p></p>
+        <b:jumbotron>
+            <h1>#{msg.register_h1}</h1>
+            <p>#{msg.register_subtitle}</p>
+        </b:jumbotron>
     </ui:define>
 
     <ui:define name="body">
-        <ui:include src="WEB-INF/components/login.xhtml" />
+        <ui:include src="WEB-INF/components/userForm.xhtml" />
     </ui:define>
 
     <ui:define name="footer">

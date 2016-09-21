@@ -1,8 +1,6 @@
 package com.cookiebutter.ManagedBeans;
 
-import com.cookiebutter.PersistenceHandlers.UserHandler;
-import org.primefaces.context.RequestContext;
-
+import javax.ejb.EJB;
 import javax.ejb.SessionContext;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -10,6 +8,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 /**
@@ -42,25 +41,22 @@ public class LoginBean implements Serializable {
         this.password = password;
     }
 
-    public String login(ActionEvent event) {
-        FacesMessage message = null;
-        boolean loggedIn = false;
+    public String login() {
+        if ("admin".equalsIgnoreCase(username) && "admin".equalsIgnoreCase(password)) {
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "", "Congratulations! You've successfully logged in.");
+            FacesContext.getCurrentInstance().addMessage("loginForm:password", msg);
 
-        if(username != null && username.equals("admin") && password != null && password.equals("admin")) {
-            loggedIn = true;
-            message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Welcome", username);
+            return "availableProducts?faces-redirect=true";
         } else {
-            loggedIn = false;
-            message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Loggin Error", "Invalid credentials");
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "", "That's the wrong password. Hint: BootsFaces rocks!");
+            FacesContext.getCurrentInstance().addMessage("loginForm:password", msg);
+
+            return null;
         }
-
-        FacesContext.getCurrentInstance().addMessage(null, message);
-
-        return "index?faces-redirect=true";
     }
 
     public String register() {
-        return "/user/add/register?faces-redirect=true";
+        return "register?faces-redirect=true";
     }
 
 }

@@ -2,18 +2,32 @@
               xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
               xmlns:h="http://xmlns.jcp.org/jsf/html"
               xmlns:p="http://primefaces.org/ui"
+              xmlns:b="http://bootsfaces.net/ui"
               xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <h:form>
-        <h:outputLabel for="chng_lang" value="#{msg.change_language_title}" />
-        <p:selectOneMenu id="chng_lang" value="#{localeBean.selectedLang}" valueChangeListener="#{localeBean.changeLanguage}" onchange="submit()">
-            <f:selectItems value="#{localeBean.langMap}" />
-        </p:selectOneMenu>
-        <p>
-            Programación Web Avanzada - ISC-517 - 2016
-            (c) All Rights Reserved
-            Luis E. Rojas - 20120178
-            Manuel E. Ureña - 20120596
-        </p>
+        <b:panel layout="fluid">
+            <b:row>
+                <b:column colXs="4" colMd="1">
+                    <h:outputLabel for="chng_lang" value="#{msg.change_language_title}" />
+                </b:column>
+                <b:column span="2">
+                    <p:selectOneMenu id="chng_lang" style="width:100%" value="#{localeBean.selectedLang}"
+                                     valueChangeListener="#{localeBean.changeLanguage}" onchange="submit()">
+                        <f:selectItems value="#{localeBean.langMap}" />
+                    </p:selectOneMenu>
+                </b:column>
+            </b:row>
+            <b:row>
+                <b:column medium-screen="2">
+                    <p>
+                        Programación Web Avanzada - ISC-517 - 2016
+                        (c) All Rights Reserved
+                        Luis E. Rojas - 20120178
+                        Manuel E. Ureña - 20120596
+                    </p>
+                </b:column>
+            </b:row>
+        </b:panel>
     </h:form>
 </ui:component>
