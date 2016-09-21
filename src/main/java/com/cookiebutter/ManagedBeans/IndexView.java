@@ -36,7 +36,6 @@ public class IndexView implements Serializable {
         }
     }
 
-    public String toIndex() { return "index.xhtml"; }
     public String toAvailableProducts() {
         return "availableProducts.xhtml";
     }
