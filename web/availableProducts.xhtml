@@ -28,9 +28,9 @@
             <f:facet name="header">
                 ${msg.products_menu_title}
             </f:facet>
-            <b:row>
-                <b:column colXs="3" styleClass="text-center" style="overflow:hidden; height: 200px;" rendered="${not empty product.images}">
-                    <p:graphicImage value="${productsBean.renderProductImage()}">
+            <b:row style="display:flex; flex-wrap:wrap">
+                <b:column colXs="3" styleClass="text-center" style="overflow:hidden; height: 200px; display:flex; align-self:center;" rendered="${not empty product.images}">
+                    <p:graphicImage value="${productsBean.renderProductImage()}" style="display:flex;align-self:center;margin:auto;width: 100%;">
                         <f:param name="imgName" value="${product.images.get(0).fileName}" />
                         <f:param name="productId" value="${product.id}" />
                     </p:graphicImage>
