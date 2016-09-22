@@ -16,7 +16,7 @@
     <ui:define name="body">
         <h1>Products Page View</h1>
         <br/>
-        <b:button look="primary" outcome="productForm" value="#{msg.add_msg} #{msg.products_menu_title}"/>
+        <b:button look="primary" outcome="productForm" value="#{msg.add_message} #{msg.products_menu_title}"/>
         <br/>
         <p:dataGrid value="#{productsBean.productService.products}"
                     columns="1"
@@ -29,13 +29,21 @@
                 ${msg.products_menu_title}
             </f:facet>
             <b:row>
-                <b:column colXs="3">
-
+                <b:column colXs="3" styleClass="text-center" style="overflow:hidden; height: 200px;" rendered="${not empty product.images}">
+                    <p:graphicImage value="${productsBean.renderProductImage()}">
+                        <f:param name="imgName" value="${product.images.get(0).fileName}" />
+                        <f:param name="productId" value="${product.id}" />
+                    </p:graphicImage>
                 </b:column>
-                <b:column colXs="9">
-                    <h3>${product.name}</h3>
-                    <p>${product.description}</p>
-                    <p> GO TO LINK </p>
+                <b:column colXs="${ product.images.size() == 0 ? 12 : 9}">
+                    <h3 class="text-center">${product.name}</h3>
+                    <p class="text-justify">${product.description}</p>
+                    <h:form>
+                        <b:commandButton look="success"
+                                         colXs="3" styleClass="btn-block"
+                                         value="${msg.edit_message}"
+                                         action="${productsBean.editProduct(product)}"/>
+                    </h:form>
                 </b:column>
             </b:row>
         </p:dataGrid>
