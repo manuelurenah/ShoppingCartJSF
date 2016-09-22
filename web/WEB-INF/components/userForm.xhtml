@@ -5,50 +5,50 @@
               xmlns:b="http://bootsfaces.net/ui"
               xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-    <h:form>
+    <h:form id="registerForm">
         <b:container layout="fluid">
             <b:panel title="#{msg.register_h1}" look="primary">
                 <b:row>
-                    <b:column colXs="6" colMd="2">
+                    <b:column colXs="4" colMd="2">
                         <h:outputLabel value="#{msg.form_name}" for="name"/>
                     </b:column>
-                    <b:column colXs="6" colMd="4">
-                        <b:inputText id="name" value="#{registerView.name}" required="true" />
+                    <b:column colXs="4" colMd="6">
+                        <b:inputText id="name" value="#{registerView.name}" ajax="true" update="@(.message)" required="true" />
                     </b:column>
-                    <b:column colXs="6" colMd="4">
+                    <b:column colXs="4" colMd="4">
                         <b:message for="name"/>
                     </b:column>
                 </b:row>
                 <b:row>
-                    <b:column colXs="6" colMd="2">
+                    <b:column colXs="4" colMd="2">
                         <h:outputLabel value="#{msg.form_lastname}" for="lastname"/>
                     </b:column>
-                    <b:column colXs="6" colMd="4">
-                        <b:inputText id="lastname" value="#{registerView.lastname}" required="true" />
+                    <b:column colXs="4" colMd="6">
+                        <b:inputText id="lastname" value="#{registerView.lastname}" ajax="true" update="@(.message)" required="true" />
                     </b:column>
-                    <b:column colXs="6" colMd="4">
+                    <b:column colXs="4" colMd="4">
                         <b:message for="lastname"/>
                     </b:column>
                 </b:row>
                 <b:row>
-                    <b:column colXs="6" colMd="2">
+                    <b:column colXs="4" colMd="2">
                         <h:outputLabel value="#{msg.form_username}" for="username"/>
                     </b:column>
-                    <b:column colXs="6" colMd="4">
-                        <b:inputText id="username" value="#{registerView.username}" required="true" />
+                    <b:column colXs="4" colMd="6">
+                        <b:inputText id="username" value="#{registerView.username}" ajax="true" update="@(.message)" required="true" />
                     </b:column>
-                    <b:column colXs="6" colMd="4">
+                    <b:column colXs="4" colMd="4">
                         <b:message for="username"/>
                     </b:column>
                 </b:row>
                 <b:row>
-                    <b:column colXs="6" colMd="2">
+                    <b:column colXs="4" colMd="2">
                         <h:outputLabel value="#{msg.form_password}" for="password"/>
                     </b:column>
-                    <b:column colXs="6" colMd="4">
-                        <b:inputSecret id="password" value="#{registerView.password}" required="true" />
+                    <b:column colXs="4" colMd="6">
+                        <b:inputSecret id="password" value="#{registerView.password}" ajax="true" update="@(.message)" required="true" />
                     </b:column>
-                    <b:column colXs="6" colMd="4">
+                    <b:column colXs="4" colMd="4">
                         <b:message for="password"/>
                     </b:column>
                 </b:row>

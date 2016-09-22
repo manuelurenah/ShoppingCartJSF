@@ -43,12 +43,12 @@ public class LoginBean implements Serializable {
 
     public String login() {
         if ("admin".equalsIgnoreCase(username) && "admin".equalsIgnoreCase(password)) {
-            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "", "Congratulations! You've successfully logged in.");
-            FacesContext.getCurrentInstance().addMessage("loginForm:password", msg);
+//            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "", "Congratulations! You've successfully logged in.");
+//            FacesContext.getCurrentInstance().addMessage("loginForm:password", msg);
 
             return "availableProducts?faces-redirect=true";
         } else {
-            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "", "That's the wrong password. Hint: BootsFaces rocks!");
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "", "Incorrect username and/or password");
             FacesContext.getCurrentInstance().addMessage("loginForm:password", msg);
 
             return null;

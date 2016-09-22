@@ -63,7 +63,6 @@ public class RegisterView implements Serializable {
 
     public String registerNewUser() {
         User user = new User(name, lastname, username, password, false);
-        userService.printUser(user);
 
         return "availableProducts?faces-redirect=true";
     }
