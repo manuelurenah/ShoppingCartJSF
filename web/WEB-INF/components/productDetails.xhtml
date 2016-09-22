@@ -13,14 +13,28 @@
                 </b:column>
             </b:row>
             <b:row>
-                <b:column colXs="3">
-                    <h4 style="background-color: lightgrey">Product Image Container</h4>
+                <b:column colXs="3" rendered="${not empty productDetail.p.images}">
+                    <p:graphicImage value="${productsBean.renderProductImage()}" style="display:flex;align-self:center;margin:auto;width: 100%;">
+                        <f:param name="imgName" value="${productDetail.p.images.get(0).fileName}" />
+                        <f:param name="productId" value="${productDetail.p.id}" />
+                    </p:graphicImage>
                 </b:column>
-                <b:column colXs="9">
+                <b:column colXs="${empty productDetail.p.images ? 12 : 9}">
                     <p>Product ID: #{productDetail.productId}</p>
-                    <h3>#{productDetail.p.name}</h3>
-                    <h5>#{productDetail.p.description}</h5>
+                    <h3 class="text-center">#{productDetail.p.name}</h3>
+                    <h5 class="text-justify">#{productDetail.p.description}</h5>
                 </b:column>
+            </b:row>
+            <b:row rendered="${not empty productDetail.p.images}">
+                <h3>${msg.product_uploaded_images}</h3>
+                <ui:repeat value="${productDetail.p.images}" var="img">
+                    <b:column colXs="12" colSm="4" style="overflow:hidden; height:200px; text-align: center; padding-bottom: 10px;">
+                        <p:graphicImage value="${productsBean.renderProductImage()}" style="margin:auto;width: 100%;">
+                            <f:param name="imgName" value="${img.fileName}" />
+                            <f:param name="productId" value="${productDetail.p.id}" />
+                        </p:graphicImage>
+                    </b:column>
+                </ui:repeat>
             </b:row>
             <b:row>
                 <p:separator />
