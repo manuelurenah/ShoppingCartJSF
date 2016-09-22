@@ -42,9 +42,9 @@
                 <b:column colXs="${ product.images.size() == 0 ? 10 : 7}">
                     <h3>${product.name}</h3>
                     <p>${product.description}</p>
-                    <p:link value="#{msg.details_link}" outcome="productView">
-                        <f:param name="productId" value="#{product.id}" />
-                    </p:link>
+                    <h:form>
+                        <p:commandLink value="#{msg.details_link}" action="${productDetail.viewProduct(product.id)}"/>
+                    </h:form>
                 </b:column>
                 <b:column colXs="2">
                     <b:button look="success" value="#{msg.add_message} #{msg.to_message} #{msg.cart_title}" icon="plus"/>

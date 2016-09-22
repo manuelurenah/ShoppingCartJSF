@@ -24,14 +24,9 @@ public class ProductDetailBean implements Serializable {
     @EJB
     ProductService productService;
 
-    @PostConstruct
-    public void init() {
-
-        String id = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("productId");
-
-        if (Integer.parseInt(id) != -1) {
-            p = productService.getById(Integer.parseInt(id));
-        }
+    public String viewProduct(int productId) {
+        p = productService.getById(productId);
+        return "productView?faces-redirect=true";
     }
 
     public String getProductId() {
