@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
  * Created by luis on 21/09/16.
  */
 @Stateless
-public class ProductService{
+public class ProductService {
     public enum ProductFilter {
         NAME, DESCRIPTION, PUBLISHED_BY
     }
@@ -25,11 +25,7 @@ public class ProductService{
     private List<Product> products;
     private List<Product> filteredProducts;
 
-
-
-
-    public ProductService() {
-    }
+    public ProductService() { }
 
 //    @Override
     public Product add(Product item) {
@@ -124,4 +120,5 @@ public class ProductService{
         this.products = products;
         FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("products", products);
     }
+
 }

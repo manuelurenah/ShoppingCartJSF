@@ -11,8 +11,9 @@
             <p:menuitem value="#{msg.products_menu_title}" url="#{index.toAvailableProducts()}" icon="fa fa-archive" />
             <p:menuitem value="#{msg.admin_menu_title}" url="#{index.toAdminPage()}" icon="fa fa-star" />
             <f:facet name="options">
-                <p:inputText style="margin-right:10px" placeholder="#{msg.search_title}"/>
-                <p:commandButton onclick="PF('dlg').show();" type="button" value="#{msg.login_title}" icon="fa fa-user" />
+                <p:inputText style="margin-right:10px" placeholder="#{msg.search_title}" />
+                <p:button value="#{msg.cart_title}" icon="fa fa-shopping-cart" />
+                <p:button value="#{msg.logout_message}" outcome="index" icon="fa fa-external-link" />
             </f:facet>
         </p:menubar>
 
@@ -31,6 +32,6 @@
                 </f:facet>
             </h:panelGrid>
         </p:dialog>
-
     </h:form>
+    <br /><br />
 </ui:component>

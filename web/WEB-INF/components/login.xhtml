@@ -13,11 +13,12 @@
                         <h:outputLabel value="#{msg.username_title}" for="username"/>
                     </b:column>
                     <b:column medium-screen="9">
-                        <b:inputText id="username" value="#{loginBean.username}" ajax="true" autocomplete="false" update="@(.message)" />
+                        <b:inputText id="username" value="#{loginBean.username}" ajax="true" autocomplete="false" update="@(.message)">
+                            <f:facet name="prepend">
+                                <b:iconAwesome name="user" />
+                            </f:facet>
+                        </b:inputText>
                     </b:column>
-                    <f:facet name="prepend">
-                        <b:icon name="user" />
-                    </f:facet>
                     <b:column medium-screen="12" style-class="message">
                         <b:message for="username" />
                     </b:column>
@@ -27,11 +28,12 @@
                         <h:outputLabel value="#{msg.password_title}" for="password" />
                     </b:column>
                     <b:column medium-screen="9">
-                        <b:inputSecret id="password" value="#{loginBean.password}" ajax="true" autocomplete="false" update="@(.message)" />
+                        <b:inputSecret id="password" value="#{loginBean.password}" ajax="true" autocomplete="false" update="@(.message)">
+                            <f:facet name="prepend">
+                                <b:iconAwesome name="key" />
+                            </f:facet>
+                        </b:inputSecret>
                     </b:column>
-                    <f:facet name="prepend">
-                        <b:iconAwesome name="key" />
-                    </f:facet>
                     <b:column medium-screen="12" styleClass="message">
                         <b:message for="password" />
                     </b:column>

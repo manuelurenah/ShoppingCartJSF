@@ -5,13 +5,14 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by luis on 20/09/16.
  */
 @Entity
-public class Product {
+public class Product implements Serializable {
     @Id
     @GeneratedValue
     private int id;
@@ -55,7 +56,6 @@ public class Product {
     public void setImages(List<byte[]> images) {
         this.images = images;
     }
-
 
     public User getPublishedBy() {
         return publishedBy;

@@ -11,7 +11,9 @@
 <ui:composition template="WEB-INF/templates/template_default.xhtml">
     <ui:define name="pageTitle">JSF Shopping Cart</ui:define>
 
-    <ui:include src="WEB-INF/components/navbar.xhtml" />
+    <ui:define name="header">
+        <ui:include src="WEB-INF/components/header.xhtml" />
+    </ui:define>
 
     <ui:define name="body">
         <ui:include src="WEB-INF/components/productForm.xhtml" />

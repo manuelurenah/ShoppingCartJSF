@@ -1,0 +1,31 @@
+<ui:component xmlns="http://www.osgi.org/xmlns/scr/v1.0.0"
+              xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+              xmlns:h="http://xmlns.jcp.org/jsf/html"
+              xmlns:p="http://primefaces.org/ui"
+              xmlns:b="http://bootsfaces.net/ui"
+              xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:form>
+        <b:container layout="fluid">
+            <b:row>
+                <b:column offset="9" span="3">
+                    <b:button look="success" value="#{msg.add_message} #{msg.to_message} #{msg.cart_title}" icon="plus"/>
+                </b:column>
+            </b:row>
+            <b:row>
+                <b:column colXs="3">
+                    <h4 style="background-color: lightgrey">Product Image Container</h4>
+                </b:column>
+                <b:column colXs="9">
+                    <p>Product ID: #{productDetail.productId}</p>
+                    <h3>#{productDetail.p.name}</h3>
+                    <h5>#{productDetail.p.description}</h5>
+                </b:column>
+            </b:row>
+            <b:row>
+                <p:separator />
+            </b:row>
+        </b:container>
+    </h:form>
+
+</ui:component>

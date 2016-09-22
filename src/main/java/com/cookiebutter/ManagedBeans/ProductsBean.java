@@ -17,6 +17,7 @@ import java.util.ArrayList;
 @ManagedBean(name = "productsBean")
 @SessionScoped
 public class ProductsBean {
+
     @EJB
     private ProductService productService;
 
@@ -25,18 +26,12 @@ public class ProductsBean {
     private String description;
     private ArrayList<byte[]> images = new ArrayList<byte[]>();
 
-
-
     public void handleFileUpload(FileUploadEvent event) {
         System.out.println(event.getFile().getFileName());
         FacesMessage message = new FacesMessage("Succesful", event.getFile().getFileName() + " was uploaded.");
         FacesContext.getCurrentInstance().addMessage(null, message);
         getImages().add(event.getFile().getContents());
 
-    }
-
-    public ProductService getProductService() {
-        return productService;
     }
 
     public String processForm() {
@@ -55,9 +50,21 @@ public class ProductsBean {
             productService.update(p);
         }
         else {
+            p.setId(ProductService.IdCounter);
             productService.add(p);
+            ProductService.IdCounter++;
         }
+        clearForm();
         return "availableProducts?faces-redirect=true";
+    }
+
+    private void clearForm() {
+        name = "";
+        description = "";
+    }
+
+    public ProductService getProductService() {
+        return productService;
     }
 
     public void setProductService(ProductService productService) {
