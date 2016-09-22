@@ -17,11 +17,44 @@
     </ui:define>
 
     <ui:define name="body">
+<<<<<<< HEAD
         <b:row>
             <b:button look="primary" outcome="productForm"
                       value="#{msg.add_message} #{msg.products_menu_title}" icon="plus"/>
         </b:row>
-      <b:row>
+        <b:row>
+            <p:dataGrid value="#{productsBean.productService.products}"
+                        columns="1"
+                        layout="grid"
+                        var="product"
+                        paginator="true"
+                        paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                        rowsPerPageTemplate="5,10,15">
+                <f:facet name="header">
+                    #{msg.products_menu_title}
+                </f:facet>
+                <b:row>
+                    <b:column colXs="3">
+
+                    </b:column>
+                    <b:column colXs="7">
+                        <h3>#{product.name}</h3>
+                        <p>#{product.description}</p>
+                        <p:link value="#{msg.details_link}" outcome="productView">
+                            <f:param name="productId" value="#{product.id}" />
+                        </p:link>
+                    </b:column>
+                    <b:column colXs="2">
+                        <b:button look="success" value="#{msg.add_message} #{msg.to_message} #{msg.cart_title}" icon="plus"/>
+                    </b:column>
+                </b:row>
+            </p:dataGrid>
+        </b:row>
+=======
+        <h1>Products Page View</h1>
+        <br/>
+        <b:button look="primary" outcome="productForm" value="#{msg.add_message} #{msg.products_menu_title}"/>
+        <br/>
         <p:dataGrid value="#{productsBean.productService.products}"
                     columns="1"
                     layout="grid"
@@ -39,27 +72,19 @@
                         <f:param name="productId" value="${product.id}" />
                     </p:graphicImage>
                 </b:column>
-                <b:column colXs="${ product.images.size() == 0 ? 10 : 7}">
-                    <h3>${product.name}</h3>
-                    <p>${product.description}</p>
-                    <p:link value="#{msg.details_link}" outcome="productView">
-                        <f:param name="productId" value="#{product.id}" />
-                    </p:link>
-                </b:column>
-                <b:column colXs="2">
-                    <b:button look="success" value="#{msg.add_message} #{msg.to_message} #{msg.cart_title}" icon="plus"/>
-                </b:column>
-                <b:column colXs="12">
+                <b:column colXs="${ product.images.size() == 0 ? 12 : 9}">
+                    <h3 class="text-center">${product.name}</h3>
+                    <p class="text-justify">${product.description}</p>
                     <h:form>
-                        <b:commandButton look="success" styleClass="btn-block"
+                        <b:commandButton look="success"
+                                         colXs="3" styleClass="btn-block"
                                          value="${msg.edit_message}"
                                          action="${productsBean.editProduct(product)}"/>
                     </h:form>
                 </b:column>
-
             </b:row>
         </p:dataGrid>
-      </b:row>
+>>>>>>> tmpt
     </ui:define>
 
     <ui:define name="footer">

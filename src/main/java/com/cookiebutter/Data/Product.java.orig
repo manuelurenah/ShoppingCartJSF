@@ -11,9 +11,12 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+<<<<<<< HEAD
+import java.io.Serializable;
+=======
 import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
-import java.io.Serializable;
+>>>>>>> tmpt
 import java.util.List;
 import java.util.Optional;
 
@@ -58,6 +61,17 @@ public class Product implements Serializable {
         this.description = description;
     }
 
+<<<<<<< HEAD
+    public List<byte[]> getImages() {
+        return images;
+    }
+
+    public void setImages(List<byte[]> images) {
+        this.images = images;
+    }
+
+=======
+>>>>>>> tmpt
     public User getPublishedBy() {
         return publishedBy;
     }

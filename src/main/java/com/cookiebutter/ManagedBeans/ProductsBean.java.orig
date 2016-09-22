@@ -44,6 +44,12 @@ public class ProductsBean {
 
     }
 
+<<<<<<< HEAD
+=======
+    public ProductService getProductService() {
+        return productService;
+    }
+
     public void clear() {
         id = -1;
         name = "";
@@ -60,6 +66,7 @@ public class ProductsBean {
         return "productForm?faces-redirect=true";
     }
 
+>>>>>>> tmpt
     public String processForm() {
         Product p;
         if(id != -1) {
@@ -80,7 +87,11 @@ public class ProductsBean {
             productService.add(p);
             ProductService.IdCounter++;
         }
+<<<<<<< HEAD
+        clearForm();
+=======
         clear();
+>>>>>>> tmpt
         return "availableProducts?faces-redirect=true";
     }
 

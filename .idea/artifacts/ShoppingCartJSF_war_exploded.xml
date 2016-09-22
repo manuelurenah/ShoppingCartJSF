@@ -28,6 +28,7 @@
           <element id="library" level="project" name="Maven: javax.validation:validation-api:1.0.0.GA" />
           <element id="library" level="project" name="Maven: javax.ejb:ejb-api:3.0" />
           <element id="library" level="project" name="Maven: javax.inject:javax.inject:1" />
+          <element id="library" level="project" name="Maven: org.omnifaces:omnifaces:2.5.1" />
         </element>
       </element>
       <element id="directory" name="META-INF">

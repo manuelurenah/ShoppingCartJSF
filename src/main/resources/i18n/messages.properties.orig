@@ -30,12 +30,15 @@ add_message=Add
 edit_message=Modify
 delete_message=Delete
 view_message=Show
-product_uploaded_images=Uploaded Images
-product_image_required=At least an image is required for a product.
-product_name_required=A product name is required.
-product_description_required=Description cannot be empty.
+<<<<<<< HEAD
 product_detail_title=Product Detail
 details_link=Details
 cart_title=Cart
 to_message=to
 logout_message=Logout
+=======
+product_uploaded_images=Uploaded Images
+product_image_required=At least an image is required for a product.
+product_name_required=A product name is required.
+product_description_required=Description cannot be empty.
+>>>>>>> tmpt
