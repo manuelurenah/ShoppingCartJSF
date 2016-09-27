@@ -29,10 +29,13 @@ public class Product implements Serializable {
     private String name;
     @Column
     private String description;
+    private int quantity;
+    private double price;
     private ArrayList<UploadedFile> images;
     private User publishedBy;
     private List<String> comments; //Should have their own class. This is on the meantime.
 
+    public Product() { }
 
     public int getId() {
         return id;
@@ -56,6 +59,22 @@ public class Product implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
     }
 
     public User getPublishedBy() {

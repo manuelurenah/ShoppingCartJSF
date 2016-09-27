@@ -14,6 +14,10 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.PhaseId;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
 import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
 import java.util.Optional;
@@ -29,8 +33,15 @@ public class ProductsBean {
     private ProductService productService;
 
     private int id = -1;
+    @Size(min = 3, max = 127)
     private String name;
+    @Size(max = 255)
     private String description;
+    @Min(value = 1)
+    @Max(value = 99)
+    private int quantity;
+    @Digits(integer = 6, fraction = 2)
+    private double price;
     private ArrayList<UploadedFile> images = new ArrayList<>();
 
     public void handleFileUpload(FileUploadEvent event) {
@@ -48,6 +59,8 @@ public class ProductsBean {
         id = -1;
         name = "";
         description ="";
+        quantity = 0;
+        price = 0.0;
         images = new ArrayList<>();
     }
 
@@ -55,6 +68,8 @@ public class ProductsBean {
         this.name = p.getName();
         this.id = p.getId();
         this.description = p.getDescription();
+        this.price = p.getPrice();
+        this.quantity =p.getQuantity();
         this.images = p.getImages();
 
         return "productForm?faces-redirect=true";
@@ -72,6 +87,8 @@ public class ProductsBean {
         p.setName(name);
         p.setImages(getImages());
         p.setDescription(description);
+        p.setQuantity(quantity);
+        p.setPrice(price);
         if(id != -1) {
             productService.update(p);
         }
@@ -82,11 +99,6 @@ public class ProductsBean {
         }
         clear();
         return "availableProducts?faces-redirect=true";
-    }
-
-    private void clearForm() {
-        name = "";
-        description = "";
     }
 
     public ProductService getProductService() {
@@ -121,6 +133,21 @@ public class ProductsBean {
         this.description = description;
     }
 
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
 
     public ArrayList<UploadedFile> getImages() {
         return images;

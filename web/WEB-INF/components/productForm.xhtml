@@ -24,6 +24,32 @@
                 </b:row>
                 <b:row>
                     <b:column colXs="12">
+                        <b:message for="quantity"/>
+                    </b:column>
+                    <b:column colXs="12" colMd="2">
+                        <h:outputLabel value="#{msg.products_form_product_qty}" for="quantity"/>
+                    </b:column>
+                    <b:column colXs="12" colMd="10">
+                        <p:spinner id="quantity" value="#{productsBean.quantity}" required="true" requiredMessage="#{msg.product_qty_required}"
+                                   min="1" max="99" style="margin-bottom: 8px"/>
+                    </b:column>
+
+                </b:row>
+                <b:row>
+                    <b:column colXs="12">
+                        <b:message for="price"/>
+                    </b:column>
+                    <b:column colXs="12" colMd="2">
+                        <h:outputLabel value="#{msg.products_form_product_price}" for="price"/>
+                    </b:column>
+                    <b:column colXs="12" colMd="10">
+                        <p:inputNumber id="price" value="#{productsBean.price}" required="true" requiredMessage="#{msg.product_price_required}"
+                                       minValue="0.1" maxValue="999.99" style="margin-bottom: 8px"/>
+                    </b:column>
+
+                </b:row>
+                <b:row>
+                    <b:column colXs="12">
                         <h:outputLabel value="#{msg.products_form_product_description}" for="desc"/>
                     </b:column>
                     <b:column colXs="12">

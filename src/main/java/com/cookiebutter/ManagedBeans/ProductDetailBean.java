@@ -19,6 +19,7 @@ import java.io.Serializable;
 public class ProductDetailBean implements Serializable {
 
     private String productId;
+    private String imgName;
     private Product p;
 
     @EJB
@@ -35,6 +36,14 @@ public class ProductDetailBean implements Serializable {
 
     public void setProductId(String productId) {
         this.productId = productId;
+    }
+
+    public String getImgName() {
+        return imgName;
+    }
+
+    public void setImgName(String imgName) {
+        this.imgName = imgName;
     }
 
     public Product getP() {

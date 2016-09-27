@@ -5,16 +5,20 @@
               xmlns:b="http://bootsfaces.net/ui"
               xmlns:f="http://xmlns.jcp.org/jsf/core">
 
+    <f:metadata>
+        <f:viewParam name="imgName" value="#{productDetail.imgName}" />
+        <f:viewParam name="productId" value="#{productDetail.productId}" />
+    </f:metadata>
+
     <h:form>
         <b:container layout="fluid">
             <b:row>
-                <b:column colXs="3" rendered="${not empty productDetail.p.images}">
-                    <p:graphicImage value="${productsBean.renderProductImage()}" style="display:flex;align-self:center;margin:auto;width: 100%;">
-                        <f:param name="imgName" value="${productDetail.p.images.get(0).fileName}" />
-                        <f:param name="productId" value="${productDetail.p.id}" />
+                <b:column colXs="3" rendered="#{not empty productDetail.p.images}">
+                    <p:graphicImage value="#{productsBean.renderProductImage()}" style="display:flex;align-self:center;margin:auto;width: 100%;">
+                        <f:param name="imgName" value="#{productDetail.imgName}" />
                     </p:graphicImage>
                 </b:column>
-                <b:column colXs="${empty productDetail.p.images ? 9 : 6}">
+                <b:column colXs="#{empty productDetail.p.images ? 9 : 6}">
                     <p>Product ID: #{productDetail.productId}</p>
                     <h3 class="text-justify">#{productDetail.p.name}</h3>
                     <h5 class="text-justify">#{productDetail.p.description}</h5>
@@ -23,13 +27,13 @@
                     <b:button look="success" value="#{msg.add_message} #{msg.to_message} #{msg.cart_title}" icon="plus"/>
                 </b:column>
             </b:row>
-            <b:row rendered="${not empty productDetail.p.images}">
-                <h3>${msg.product_uploaded_images}</h3>
-                <ui:repeat value="${productDetail.p.images}" var="img">
+            <b:row rendered="#{not empty productDetail.p.images}">
+                <h3>#{msg.product_uploaded_images}</h3>
+                <ui:repeat value="#{productDetail.p.images}" var="img">
                     <b:column colXs="12" colSm="4" style="overflow:hidden; height:200px; text-align: center; padding-bottom: 10px;">
-                        <p:graphicImage value="${productsBean.renderProductImage()}" style="margin:auto;width: 100%;">
-                            <f:param name="imgName" value="${img.fileName}" />
-                            <f:param name="productId" value="${productDetail.p.id}" />
+                        <p:graphicImage value="#{productsBean.renderProductImage()}" style="margin:auto;width: 100%;">
+                            <f:param name="imgName" value="#{img.fileName}" />
+                            <f:param name="productId" value="#{productDetail.p.id}" />
                         </p:graphicImage>
                     </b:column>
                 </ui:repeat>
