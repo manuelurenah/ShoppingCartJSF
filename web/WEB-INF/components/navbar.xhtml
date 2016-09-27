@@ -11,7 +11,6 @@
             <p:menuitem value="#{msg.products_menu_title}" url="#{index.toAvailableProducts()}" icon="fa fa-archive" style="padding: 4px"/>
             <p:menuitem value="#{msg.admin_menu_title}" url="#{index.toAdminPage()}" icon="fa fa-star" style="padding: 4px"/>
             <f:facet name="options">
-                <p:inputText style="margin-right:10px" placeholder="#{msg.search_title}" />
                 <p:button value="#{msg.cart_title}" outcome="shoppingCart" icon="fa fa-shopping-cart" />
                 <p:button value="#{msg.logout_message}" outcome="index" icon="fa fa-external-link" />
             </f:facet>

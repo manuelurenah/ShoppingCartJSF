@@ -24,13 +24,23 @@ public class ProductService {
 
     private List<Product> products;
     private List<Product> filteredProducts;
+    private List<Product> selectedProducts;
 
     public ProductService() { }
 
 //    @Override
-    public Product add(Product item) {
-        products.add(item);
-        setProducts(products);
+    public Boolean add(Product item) {
+        Boolean added = products.add(item);
+        if (added) {
+            setProducts(products);
+        }
+
+        return added;
+    }
+
+    public Product addToSelected(Product item) {
+        selectedProducts.add(item);
+        setSelectedProducts(selectedProducts);
         return item;
     }
 
@@ -66,12 +76,37 @@ public class ProductService {
 
 //    @Override
     public Boolean delete(Product item) {
-        Boolean deleted =  products.remove(item);
+        Boolean deleted = products.remove(item);
         if(deleted) {
             setProducts(products);
         }
 
         return deleted;
+    }
+
+    public Boolean removeFromSelected(int id) {
+        for (Product p: selectedProducts) {
+            if (p.getId() == id) {
+                Boolean deleted = selectedProducts.remove(p);
+                if (deleted) {
+                    setSelectedProducts(selectedProducts);
+                }
+
+                return deleted;
+            }
+        }
+
+        return false;
+    }
+
+    public List<Integer> getQtyRange(int id) {
+        Product p = getById(id);
+        List<Integer> list = new ArrayList<>();
+        for (int i = 1; i <= p.getQuantity(); i++) {
+            list.add(i);
+        }
+
+        return list;
     }
 
     public List<Product> getProducts() {
@@ -118,7 +153,19 @@ public class ProductService {
 
     public void setProducts(List<Product> products) {
         this.products = products;
-        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("products", products);
+        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("products", this.products);
     }
 
+    public List<Product> getSelectedProducts() {
+        selectedProducts = (ArrayList<Product>) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("selectedProducts");
+        if (selectedProducts == null) {
+            selectedProducts = new ArrayList<>();
+        }
+        return selectedProducts;
+    }
+
+    public void setSelectedProducts(List<Product> selectedProducts) {
+        this.selectedProducts = selectedProducts;
+        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("selectedProducts", this.selectedProducts);
+    }
 }

@@ -3,11 +3,14 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
       xmlns:b="http://bootsfaces.net/ui"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <ui:composition template="WEB-INF/templates/template_default.xhtml">
+
+    <ui:define name="pageTitle">JSF Shopping Cart</ui:define>
 
     <ui:define name="header">
         <ui:include src="WEB-INF/components/header.xhtml" />
@@ -17,11 +20,36 @@
     <ui:define name="body">
         <b:container layout="fluid">
             <b:row>
-                <b:column large-screen="12" medium-screen="12" style="text-align: center">
-                    <h1>Shopping Cart View</h1>
-                </b:column>
+                <p:dataGrid value="#{productsBean.productService.selectedProducts}"
+                            columns="1"
+                            layout="grid"
+                            var="product"
+                            paginator="true"
+                            paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                            rowsPerPageTemplate="5,10,15">
+                    <f:facet name="header">
+                        #{msg.products_menu_title}
+                    </f:facet>
+                    <b:row style="display:flex; flex-wrap:wrap">
+                        <b:column colXs="3" styleClass="text-center" style="overflow:hidden; height: 200px; display:flex; align-self:center;" rendered="#{not empty product.images}">
+                            <p:graphicImage value="#{productsBean.renderProductImage()}" style="display:flex;align-self:center;margin:auto;width: 100%;" />
+                        </b:column>
+                        <b:column colXs="#{ product.images.size() == 0 ? 10 : 7}">
+                            <h3>#{product.name}</h3>
+                            <h4 style="color: #337ab7;">$#{product.price}</h4>
+                            <h6>#{msg.products_form_product_qty} #{product.quantity}</h6>
+                            <h:form>
+                                <p:commandLink value="#{msg.details_link}" />
+                            </h:form>
+                        </b:column>
+                    </b:row>
+                </p:dataGrid>
             </b:row>
         </b:container>
+    </ui:define>
+
+    <ui:define name="footer">
+        <ui:include src="WEB-INF/components/footer.xhtml" />
     </ui:define>
 
 </ui:composition>

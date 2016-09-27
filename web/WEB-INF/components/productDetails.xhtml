@@ -21,10 +21,16 @@
                 <b:column colXs="#{empty productDetail.p.images ? 9 : 6}">
                     <p>Product ID: #{productDetail.productId}</p>
                     <h3 class="text-justify">#{productDetail.p.name}</h3>
-                    <h5 class="text-justify">#{productDetail.p.description}</h5>
+                    <h4 class="text-justify">#{msg.products_form_product_price} $#{productDetail.p.price}</h4>
+                    <p class="text-justify">#{productDetail.p.description}</p>
                 </b:column>
-                <b:column colXs="3">
-                    <b:button look="success" value="#{msg.add_message} #{msg.to_message} #{msg.cart_title}" icon="plus"/>
+                <b:column colXs="2">
+                    <h:outputLabel for="qtyRange" value="#{msg.products_form_product_qty}" />
+                    <p:selectOneMenu id="qtyRange" value="#{productDetail.selectedQty}">
+                        <f:selectItems value="#{productDetail.qtyRange}" />
+                    </p:selectOneMenu>
+                    <b:commandButton look="success" action="#{productDetail.processItemToCart(productDetail.p)}"
+                                     value="#{msg.add_message} #{msg.to_message} #{msg.cart_title}" icon="plus"/>
                 </b:column>
             </b:row>
             <b:row rendered="#{not empty productDetail.p.images}">
