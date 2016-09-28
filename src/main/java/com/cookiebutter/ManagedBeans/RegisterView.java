@@ -1,7 +1,9 @@
 package com.cookiebutter.ManagedBeans;
 
 import com.cookiebutter.Data.User;
+import com.cookiebutter.PersistenceHandlers.UserService;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -25,9 +27,31 @@ public class RegisterView implements Serializable {
     private String username;
     @Size(min = 4, max = 15)
     private String password;
+    private boolean isAdmin;
 
     @EJB
     UserService userService;
+
+    @PostConstruct
+    public void init() {
+        name = "";
+        lastname = "";
+        username = "";
+        password = "";
+        isAdmin = false;
+    }
+
+    public String registerNewUser() {
+        User user = new User(name, lastname, username, password, isAdmin);
+//        userService.add(user);
+        init();
+        return "index?faces-redirect=true";
+    }
+
+    public String cancel() {
+        init();
+        return "index?faces-redirect=true";
+    }
 
     public String getName() {
         return name;
@@ -61,13 +85,12 @@ public class RegisterView implements Serializable {
         this.password = password;
     }
 
-    public String registerNewUser() {
-        User user = new User(name, lastname, username, password, false);
-
-        return "availableProducts?faces-redirect=true";
+    public boolean isAdmin() {
+        return isAdmin;
     }
 
-    public String cancel() {
-        return "index?faces-redirect=true";
+    public void setAdmin(boolean admin) {
+        isAdmin = admin;
     }
+
 }

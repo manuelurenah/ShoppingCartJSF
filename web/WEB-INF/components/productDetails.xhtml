@@ -29,7 +29,7 @@
                     <p:selectOneMenu id="qtyRange" value="#{productDetail.selectedQty}">
                         <f:selectItems value="#{productDetail.qtyRange}" />
                     </p:selectOneMenu>
-                    <b:commandButton look="success" action="#{productDetail.processItemToCart(productDetail.p)}"
+                    <b:commandButton look="success" action="#{cart.addToCart(productDetail.p)}"
                                      value="#{msg.add_message} #{msg.to_message} #{msg.cart_title}" icon="plus"/>
                 </b:column>
             </b:row>

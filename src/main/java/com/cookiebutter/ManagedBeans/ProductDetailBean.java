@@ -34,12 +34,6 @@ public class ProductDetailBean implements Serializable {
         return "productView?faces-redirect=true";
     }
 
-    public String processItemToCart(Product p) {
-        p.setQuantity(selectedQty);
-        productService.addToSelected(p);
-        return "shoppingCart?faces-redirect=true";
-    }
-
     public String getProductId() {
         return productId;
     }

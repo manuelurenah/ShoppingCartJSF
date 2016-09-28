@@ -1,4 +1,4 @@
-package com.cookiebutter.ManagedBeans;
+package com.cookiebutter.PersistenceHandlers;
 
 import com.cookiebutter.Data.User;
 

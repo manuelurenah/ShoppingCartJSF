@@ -53,12 +53,20 @@
                     </b:column>
                 </b:row>
                 <b:row>
+                    <b:column colXs="4" colMd="2">
+                        <h:outputLabel value="#{msg.admin_menu_title}" for="admin" />
+                    </b:column>
+                    <b:column colXs="4" colMd="6">
+                        <b:switch id="admin" value="#{registerView.admin}" />
+                    </b:column>
+                </b:row>
+                <b:row>
                     <b:column span="2" offset="2">
                         <b:commandButton value="#{msg.form_save}" action="#{registerView.registerNewUser()}" update="@form" look="primary"
                                          style="width:100%" validateClient="true" />
                     </b:column>
                     <b:column span="2">
-                        <b:button value="#{msg.form_cancel}" outcome="index" look="danger" style="width:100%" />
+                        <b:commandButton value="#{msg.form_cancel}" action="#{registerView.cancel()}" look="danger" style="width:100%" />
                     </b:column>
                 </b:row>
             </b:panel>

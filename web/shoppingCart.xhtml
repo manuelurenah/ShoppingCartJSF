@@ -18,34 +18,42 @@
     </ui:define>
 
     <ui:define name="body">
-        <b:container layout="fluid">
-            <b:row>
-                <p:dataGrid value="#{productsBean.productService.selectedProducts}"
-                            columns="1"
-                            layout="grid"
-                            var="product"
-                            paginator="true"
-                            paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                            rowsPerPageTemplate="5,10,15">
-                    <f:facet name="header">
-                        #{msg.products_menu_title}
-                    </f:facet>
-                    <b:row style="display:flex; flex-wrap:wrap">
-                        <b:column colXs="3" styleClass="text-center" style="overflow:hidden; height: 200px; display:flex; align-self:center;" rendered="#{not empty product.images}">
-                            <p:graphicImage value="#{productsBean.renderProductImage()}" style="display:flex;align-self:center;margin:auto;width: 100%;" />
-                        </b:column>
-                        <b:column colXs="#{ product.images.size() == 0 ? 10 : 7}">
-                            <h3>#{product.name}</h3>
-                            <h4 style="color: #337ab7;">$#{product.price}</h4>
-                            <h6>#{msg.products_form_product_qty} #{product.quantity}</h6>
-                            <h:form>
-                                <p:commandLink value="#{msg.details_link}" />
-                            </h:form>
-                        </b:column>
-                    </b:row>
-                </p:dataGrid>
-            </b:row>
-        </b:container>
+        <h:form>
+            <b:container layout="fluid">
+                <b:row>
+                    <b:column colXs="2" colMd="2" offset="10" >
+                        <b:commandButton look="success" value="#{msg.buy_message}" style="width: 100%; margin-bottom: 8px;" />
+                    </b:column>
+                </b:row>
+
+                <b:row>
+                    <p:dataGrid value="#{cart.selectedProducts}"
+                                columns="1"
+                                layout="grid"
+                                var="product"
+                                paginator="true"
+                                paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                rowsPerPageTemplate="5,10,15">
+                        <f:facet name="header">
+                            #{msg.products_menu_title}
+                        </f:facet>
+                        <b:row style="display:flex; flex-wrap:wrap">
+                            <b:column colXs="3" styleClass="text-center" style="overflow:hidden; height: 200px; display:flex; align-self:center;" rendered="#{not empty product.images}">
+                                <p:graphicImage value="#{productsBean.renderProductImage()}" style="display:flex;align-self:center;margin:auto;width: 100%;" />
+                            </b:column>
+                            <b:column colXs="#{ product.images.size() == 0 ? 10 : 7}">
+                                <h3>#{product.name}</h3>
+                                <h4 style="color: #337ab7;">$#{product.price}</h4>
+                                <h6>#{msg.products_form_product_qty} #{productDetail.selectedQty}</h6>
+                                <h:form>
+                                    <p:commandLink value="#{msg.delete_message}" action="#{cart.removeFromCart(product)}"/>
+                                </h:form>
+                            </b:column>
+                        </b:row>
+                    </p:dataGrid>
+                </b:row>
+            </b:container>
+        </h:form>
     </ui:define>
 
     <ui:define name="footer">
