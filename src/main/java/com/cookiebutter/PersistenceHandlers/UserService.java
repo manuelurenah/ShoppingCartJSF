@@ -2,8 +2,7 @@ package com.cookiebutter.PersistenceHandlers;
 
 import com.cookiebutter.Data.User;
 
-import javax.ejb.Singleton;
-import javax.ejb.Stateless;
+import javax.ejb.*;
 import javax.faces.context.FacesContext;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,21 +11,21 @@ import java.util.List;
  * Created by MEUrena on 9/21/16.
  * All rights reserved.
  */
-@Singleton
+@Stateless
 public class UserService {
 
     public static int IdCounter = 0;
 
-    private List<User> users;
-    private User currentUser;
+    private List<User> users = new ArrayList<>();
+    private User currentUser = null;
 
     public UserService() {  }
 
     //    @Override
     public Boolean add(User item) {
         Boolean added = false;
-        if (!users.contains(item)) {
-            added = users.add(item);
+        if (!getUsers().contains(item)) {
+            added = getUsers().add(item);
             setUsers(users);
         }
 
@@ -42,7 +41,7 @@ public class UserService {
 
     //    @Override
     public User getById(int id) {
-        for (User u: users) {
+        for (User u: getUsers()) {
             if(u.getId() == id) {
                 return u;
             }
@@ -52,8 +51,8 @@ public class UserService {
     }
 
     public User getByUsername(String username) {
-        for (User u: users) {
-            if (u.getUsername() == username) {
+        for (User u: getUsers()) {
+            if (u.getUsername().equals( username)) {
                 return u;
             }
         }
@@ -63,7 +62,7 @@ public class UserService {
 
     //    @Override
     public Boolean deleteById(int id) {
-        for (User u: users) {
+        for (User u: getUsers()) {
             if(u.getId() == id) {
                 users.remove(u);
                 setUsers(users);
@@ -75,7 +74,7 @@ public class UserService {
 
     //    @Override
     public Boolean delete(User item) {
-        Boolean deleted =  users.remove(item);
+        Boolean deleted =  getUsers().remove(item);
         if(deleted) {
             setUsers(users);
         }

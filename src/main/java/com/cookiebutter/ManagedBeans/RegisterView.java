@@ -43,7 +43,7 @@ public class RegisterView implements Serializable {
 
     public String registerNewUser() {
         User user = new User(name, lastname, username, password, isAdmin);
-//        userService.add(user);
+        userService.add(user);
         init();
         return "index?faces-redirect=true";
     }
