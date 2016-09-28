@@ -33,7 +33,7 @@ public class Product implements Serializable {
     private double price;
     private ArrayList<UploadedFile> images;
     private User publishedBy;
-    private List<String> comments; //Should have their own class. This is on the meantime.
+    private List<Comment> comments; //Should have their own class. This is on the meantime.
 
     public Product() { }
 
@@ -91,5 +91,14 @@ public class Product implements Serializable {
 
     public void setImages(ArrayList<UploadedFile> images) {
         this.images = images;
+    }
+
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
     }
 }
