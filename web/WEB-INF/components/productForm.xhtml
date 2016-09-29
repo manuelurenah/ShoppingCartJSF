@@ -96,7 +96,7 @@
                 <b:row>
                     <b:column span="4" offset="2">
                         <b:commandButton value="#{msg.form_save}" action="#{productsBean.processForm()}" update="@form" look="primary"
-                                         style="width:100%" validateClient="true" />
+                                         style="width:100%"  validateClient="true" />
                     </b:column>
                     <b:column span="4">
                         <p:remoteCommand action="${productsBean.clear()}" name="clearProductForm"/>

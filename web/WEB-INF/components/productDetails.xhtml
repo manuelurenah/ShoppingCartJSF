@@ -48,6 +48,57 @@
             </b:row>
             <b:row>
                 <p:separator />
+                <h3>${msg.comments_title}</h3>
+                <br/>
+                <b:panel>
+                    <b:row id="comments">
+                        <b:column colXs="12">
+                            <p:dataGrid value="#{productDetail.p.comments}"
+                                        rendered="${not empty productDetail.p.comments}"
+                                        columns="1"
+                                        layout="grid"
+                                        var="comment"
+                                        paginator="true"
+                                        rows="5"
+                                        paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                        rowsPerPageTemplate="5,10,15">
+                                <b:column colXs="12">
+                                    <p>
+                                        <b>${comment.user != null ? comment.user.username : ""}</b>
+                                        <br/>
+                                        ${comment.comment}
+                                    </p>
+                                    <p:rating value="${comment.rating}" disabled="true"/>
+                                </b:column>
+                            </p:dataGrid>
+                        </b:column>
+                    </b:row>
+                    <p:separator/>
+                    <b:row>
+                        <h:form id="comment-form">
+                            <b:column colXs="12">
+                                <h4>${msg.add_message} ${msg.comments_title}</h4>
+                            </b:column>
+                            <b:column colXs="12">
+                                <p:outputLabel value="${msg.comments_rating}" for="product-stars"/>
+                                <b:message for="product-stars"/>
+                                <p:rating stars="5" id="product-stars" value="#{productDetail.rating}" required="true" requiredMessage="${msg.comments_rating_required}"/>
+                            </b:column>
+                            <b:column colXs="12">
+                                <p:outputLabel value="${msg.comments_comment}" form="product-comment"/>
+                                <b:message for="product-comment"/>
+                                <b:inputTextarea id="product-comment" value="#{productDetail.comment}" required="true" requiredMessage="${msg.comments_comment_required}"/>
+                            </b:column>
+                            <br/>
+                            <br/>
+                            <b:column colXs="12">
+                                <b:commandButton look="primary" process="@form" update="@([id$=comments])" validateClient="true" ajax="true"
+                                                 actionListener="${productDetail.saveComment()}"
+                                                 value="${msg.add_message}"/>
+                            </b:column>
+                        </h:form>
+                    </b:row>
+                </b:panel>
             </b:row>
         </b:container>
     </h:form>
