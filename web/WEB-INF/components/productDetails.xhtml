@@ -17,7 +17,6 @@
                     <p:graphicImage value="#{productsBean.renderProductImage()}" style="display:flex;align-self:center;margin:auto;width: 100%;">
                         <f:param name="imgName" value="${productDetail.p.images.get(0).fileName}" />
                         <f:param name="productId" value="#{productDetail.p.id}" />
-
                     </p:graphicImage>
                 </b:column>
                 <b:column colXs="#{empty productDetail.p.images ? 9 : 6}">

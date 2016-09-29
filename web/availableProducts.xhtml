@@ -41,6 +41,7 @@
                 </b:column>
                 <b:column colXs="#{ product.images.size() == 0 ? 10 : 7}">
                     <h3>#{product.name}</h3>
+                    <p>#{msg.available_message} #{product.quantity}</p>
                     <h4 style="color: #337ab7;">$#{product.price}</h4>
                     <p>#{product.description}</p>
                     <h:form>
@@ -53,7 +54,7 @@
                     <h:form>
                         <b:commandButton look="success" styleClass="btn-block"
                                          value="#{msg.edit_message}"
-                                         action="#{productsBean.editProduct(product)}"/>
+                                         action="#{productsBean.editProduct(product)}" rendered="#{loginBean.userService.currentUser.admin}" />
                     </h:form>
                 </b:column>
 

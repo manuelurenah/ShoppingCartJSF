@@ -118,6 +118,23 @@ public class ProductService {
         return total;
     }
 
+    public void reduceAvailableProducts() {
+        for (Product select : selectedProducts) {
+            for (Product p : products) {
+                if (p.getId() == select.getId()) {
+                    int actualQty = p.getQuantity();
+                    int newQty = actualQty - select.getQuantity();
+                    if (newQty <= 0) {
+                        deleteById(p.getId());
+                    } else {
+                        p.setQuantity(newQty);
+                        update(p);
+                    }
+                }
+            }
+        }
+    }
+
     public List<Product> getProducts() {
         products = (ArrayList<Product>)FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("products");
         if(products == null) {

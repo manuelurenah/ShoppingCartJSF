@@ -1,7 +1,9 @@
 package com.cookiebutter.ManagedBeans;
 
 import com.cookiebutter.Data.Product;
+import com.cookiebutter.Data.Transaction;
 import com.cookiebutter.PersistenceHandlers.ProductService;
+import com.cookiebutter.PersistenceHandlers.TransactionService;
 import com.cookiebutter.PersistenceHandlers.UserService;
 
 import javax.annotation.PostConstruct;
@@ -25,6 +27,8 @@ public class CartBean {
 
     @EJB
     ProductService productService;
+    @EJB
+    TransactionService transactionService;
 
     @PostConstruct
     public void init() {
@@ -35,12 +39,30 @@ public class CartBean {
     public String addToCart(Product p, int qty) {
         p.setQuantity(qty);
         this.selectedProducts.add(p);
+        productService.setSelectedProducts(selectedProducts);
         return "shoppingCart?faces-redirect=true";
     }
 
     public String removeFromCart(Product p) {
         this.selectedProducts.remove(p);
         return "shoppingCart?faces-redirect=true";
+    }
+
+    public String buy() {
+        List<Integer> pId = new ArrayList<>();
+        List<Integer> pQty = new ArrayList<>();
+
+        for (Product s : selectedProducts) {
+            pId.add(s.getId());
+            pQty.add(s.getQuantity());
+        }
+
+        Transaction trans = new Transaction(pId, pQty);
+        transactionService.add(trans);
+
+
+
+        return "availableProducts?faces-redirect=true";
     }
 
     public void getTotalPrice() {

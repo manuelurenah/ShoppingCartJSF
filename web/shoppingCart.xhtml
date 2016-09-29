@@ -28,7 +28,7 @@
                     <b:column colXs="2" colMd="2" offset="10" rendered="#{not empty cart.selectedProducts}" >
                         <h4 class="text-justify">Total:</h4>
                         <h4 class="text-justify" style="color: #337ab7;">$#{cart.cartTotal}</h4>
-                        <b:commandButton look="success" value="#{msg.buy_message}" style="width: 100%; margin-bottom: 8px;" />
+                        <b:commandButton look="success" value="#{msg.buy_message}" action="#{cart.buy()}" style="width: 100%; margin-bottom: 8px;" />
                     </b:column>
                 </b:row>
 

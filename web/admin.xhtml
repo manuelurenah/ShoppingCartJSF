@@ -17,9 +17,10 @@
     <ui:define name="body">
         <b:container layout="fluid">
             <b:row>
-                <b:column large-screen="12" medium-screen="12" style="text-align: center">
-                    <h1>Admin Page View</h1>
-                </b:column>
+                <ui:include src="WEB-INF/components/pieChart.xhtml" />
+            </b:row>
+            <b:row>
+                <ui:include src="WEB-INF/components/barChart.xhtml" />
             </b:row>
         </b:container>
     </ui:define>
