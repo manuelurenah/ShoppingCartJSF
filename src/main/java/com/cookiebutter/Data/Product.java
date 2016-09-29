@@ -101,4 +101,17 @@ public class Product implements Serializable {
     public void setComments(List<Comment> comments) {
         this.comments = comments;
     }
+
+    public Product clone() {
+        Product p = new Product();
+        p.setDescription(this.getDescription());
+        p.setId(this.getId());
+        p.setName(this.getName());
+        p.setQuantity(this.getQuantity());
+        p.setImages(this.getImages());
+        p.setComments(this.getComments());
+        p.setPublishedBy(this.getPublishedBy());
+        p.setPrice(this.getPrice());
+        return p;
+    }
 }

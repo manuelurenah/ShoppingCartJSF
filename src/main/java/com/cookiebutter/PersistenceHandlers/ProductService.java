@@ -128,7 +128,7 @@ public class ProductService {
                 if (p.getId() == select.getId()) {
                     int newQty = p.getQuantity() - select.getQuantity();
                     if (newQty <= 0) {
-                        iterator.remove();
+                        delete(p);
                     } else {
                         p.setQuantity(newQty);
                         update(p);

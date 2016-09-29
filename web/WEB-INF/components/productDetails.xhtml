@@ -9,9 +9,9 @@
         <f:viewParam name="imgName" value="#{productDetail.imgName}" />
         <f:viewParam name="productId" value="#{productDetail.productId}" />
     </f:metadata>
-
+    <b:container layout="fluid">
     <h:form>
-        <b:container layout="fluid">
+
             <b:row>
                 <b:column colXs="3" rendered="#{not empty productDetail.p.images}">
                     <p:graphicImage value="#{productsBean.renderProductImage()}" style="display:flex;align-self:center;margin:auto;width: 100%;">
@@ -34,6 +34,7 @@
                                      value="#{msg.add_message} #{msg.to_message} #{msg.cart_title}" icon="plus"/>
                 </b:column>
             </b:row>
+    </h:form>
             <b:row rendered="#{not empty productDetail.p.images}">
                 <h3>#{msg.product_uploaded_images}</h3>
                 <ui:repeat value="#{productDetail.p.images}" var="img">
@@ -100,6 +101,5 @@
                 </b:panel>
             </b:row>
         </b:container>
-    </h:form>
 
 </ui:component>

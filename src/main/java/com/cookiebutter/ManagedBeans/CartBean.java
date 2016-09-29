@@ -38,9 +38,18 @@ public class CartBean {
     }
 
     public String addToCart(int id, int qty) {
+        // look into selectedProducs;
+        for(Product p: selectedProducts) {
+            if(p.getId() == id) {
+                p.setQuantity(p.getQuantity()+qty);
+            }
+            return "shoppingCart?faces-redirect=true";
+        }
         Product p = productService.getById(id);
-        p.setQuantity(qty);
-        this.selectedProducts.add(p);
+        Product selected = p.clone();
+
+        selected.setQuantity(qty);
+        this.selectedProducts.add(selected);
         productService.setSelectedProducts(selectedProducts);
         return "shoppingCart?faces-redirect=true";
     }
@@ -63,6 +72,8 @@ public class CartBean {
         transactionService.add(trans);
 
         productService.reduceAvailableProducts(selectedProducts);
+
+        this.selectedProducts = new ArrayList<>(); // delete all products from queue.
 
         return "availableProducts?faces-redirect=true";
     }
