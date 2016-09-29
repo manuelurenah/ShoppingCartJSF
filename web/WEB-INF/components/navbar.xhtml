@@ -9,7 +9,8 @@
 
         <p:menubar>
             <p:menuitem value="#{msg.products_menu_title}" url="#{index.toAvailableProducts()}" icon="fa fa-archive" style="padding: 4px"/>
-            <p:menuitem value="#{msg.admin_menu_title}" url="#{index.toAdminPage()}" icon="fa fa-star" style="padding: 4px" rendered="#{loginBean.userService.currentUser.admin}"/>
+            <p:menuitem value="#{msg.admin_menu_title}" url="#{index.toAdminPage()}" icon="fa fa-bar-chart" style="padding: 4px" rendered="#{loginBean.userService.currentUser.admin}"/>
+            <p:menuitem value="#{msg.history_menu_message}" url="#{index.toSalesHistory()}" icon="fa fa-leanpub" style="padding: 4px" rendered="#{loginBean.userService.currentUser.admin}"/>
             <f:facet name="options">
                 <p:button value="#{msg.cart_title}" outcome="shoppingCart" icon="fa fa-shopping-cart" />
                 <p:button value="#{msg.logout_message}" outcome="index" icon="fa fa-external-link" />

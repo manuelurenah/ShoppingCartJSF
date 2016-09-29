@@ -1,5 +1,6 @@
 package com.cookiebutter.Data;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -11,10 +12,16 @@ public class Transaction {
     private int id;
     private List<Integer> productsIds;
     private List<Integer> productsQty;
+    private User createdBy;
+    private Date date;
+    private double transactionTotal;
 
-    public Transaction(List<Integer> productsIds, List<Integer> productsQty) {
+    public Transaction(List<Integer> productsIds, List<Integer> productsQty, User createdBy, Date date, double transactionTotal) {
         this.productsIds = productsIds;
         this.productsQty = productsQty;
+        this.createdBy = createdBy;
+        this.date = date;
+        this.transactionTotal = transactionTotal;
     }
 
     public int getId() {
@@ -41,4 +48,27 @@ public class Transaction {
         this.productsQty = productsQty;
     }
 
+    public User getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(User createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public double getTransactionTotal() {
+        return transactionTotal;
+    }
+
+    public void setTransactionTotal(double transactionTotal) {
+        this.transactionTotal = transactionTotal;
+    }
 }

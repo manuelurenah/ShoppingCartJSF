@@ -2,6 +2,7 @@ package com.cookiebutter.ManagedBeans;
 
 import com.cookiebutter.Data.Product;
 import com.cookiebutter.Data.Transaction;
+import com.cookiebutter.Data.User;
 import com.cookiebutter.PersistenceHandlers.ProductService;
 import com.cookiebutter.PersistenceHandlers.TransactionService;
 import com.cookiebutter.PersistenceHandlers.UserService;
@@ -11,6 +12,7 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -30,6 +32,8 @@ public class CartBean {
     ProductService productService;
     @EJB
     TransactionService transactionService;
+    @EJB
+    UserService userService;
 
     @PostConstruct
     public void init() {
@@ -42,8 +46,8 @@ public class CartBean {
         for(Product p: selectedProducts) {
             if(p.getId() == id) {
                 p.setQuantity(p.getQuantity()+qty);
+                return "shoppingCart?faces-redirect=true";
             }
-            return "shoppingCart?faces-redirect=true";
         }
         Product p = productService.getById(id);
         Product selected = p.clone();
@@ -68,7 +72,8 @@ public class CartBean {
             pQty.add(s.getQuantity());
         }
 
-        Transaction trans = new Transaction(pId, pQty);
+        User current = userService.getCurrentUser();
+        Transaction trans = new Transaction(pId, pQty, current, new Date(), cartTotal);
         transactionService.add(trans);
 
         productService.reduceAvailableProducts(selectedProducts);
@@ -99,5 +104,13 @@ public class CartBean {
 
     public void setCartTotal(double cartTotal) {
         this.cartTotal = cartTotal;
+    }
+
+    public TransactionService getTransactionService() {
+        return transactionService;
+    }
+
+    public void setTransactionService(TransactionService transactionService) {
+        this.transactionService = transactionService;
     }
 }

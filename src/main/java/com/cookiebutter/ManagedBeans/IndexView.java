@@ -40,4 +40,5 @@ public class IndexView implements Serializable {
         return "availableProducts.xhtml";
     }
     public String toAdminPage() { return "admin.xhtml"; }
+    public String toSalesHistory() { return "salesHistory.xhtml"; }
 }
