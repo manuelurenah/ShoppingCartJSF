@@ -60,7 +60,7 @@ public class CartBean {
         Transaction trans = new Transaction(pId, pQty);
         transactionService.add(trans);
 
-
+        productService.reduceAvailableProducts();
 
         return "availableProducts?faces-redirect=true";
     }
