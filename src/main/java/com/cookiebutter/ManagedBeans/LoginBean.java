@@ -35,7 +35,8 @@ public class LoginBean implements Serializable {
 
     @PostConstruct
     public void init() {
-
+        username = "";
+        password = "";
     }
 
     public String getUsername() {
@@ -62,11 +63,24 @@ public class LoginBean implements Serializable {
         this.current = current;
     }
 
+    public UserService getUserService() {
+        return userService;
+    }
+
+    public void setUserService(UserService userService) {
+        this.userService = userService;
+    }
+
     public String login() {
         User user = userService.getByUsername(username);
+        if (user == null) {
+            user = new User("admin", "admin", "admin", "admin", true);
+            userService.add(user);
+        }
 
-        if (("admin".equalsIgnoreCase(username) && "admin".equalsIgnoreCase(password)) || (user != null && user.getPassword().equals(password))) {
+        if ((user.getUsername().equals(username) && user.getPassword().equals(password))) {
             userService.setCurrentUser(user);
+            current = userService.getCurrentUser();
             return "availableProducts?faces-redirect=true";
         } else {
             FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "", "Incorrect username and/or password");
