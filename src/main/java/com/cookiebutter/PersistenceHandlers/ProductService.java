@@ -121,6 +121,7 @@ public class ProductService {
 
     public void reduceAvailableProducts(List<Product> selection) {
         products = getProducts();
+        ArrayList<Product> toDelete = new ArrayList<>();
         for (Product select : selection) {
             Iterator<Product> iterator = products.iterator();
             while(iterator.hasNext()) {
@@ -128,13 +129,19 @@ public class ProductService {
                 if (p.getId() == select.getId()) {
                     int newQty = p.getQuantity() - select.getQuantity();
                     if (newQty <= 0) {
-                        delete(p);
+                        if(!toDelete.contains(p)){
+                            toDelete.add(p);
+                        }
                     } else {
                         p.setQuantity(newQty);
                         update(p);
                     }
                 }
             }
+        }
+
+        for(Product p: toDelete) {
+            delete(p);
         }
     }
 
