@@ -3,6 +3,7 @@ package com.cookiebutter.ManagedBeans;
 import com.cookiebutter.Data.User;
 import com.cookiebutter.PersistenceHandlers.UserService;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.SessionContext;
 import javax.faces.application.FacesMessage;
@@ -27,9 +28,15 @@ public class LoginBean implements Serializable {
     private String username;
     @NotNull
     private String password;
+    private User current;
 
     @EJB
     UserService userService;
+
+    @PostConstruct
+    public void init() {
+
+    }
 
     public String getUsername() {
         return username;
@@ -47,12 +54,19 @@ public class LoginBean implements Serializable {
         this.password = password;
     }
 
+    public User getCurrent() {
+        return current;
+    }
+
+    public void setCurrent(User current) {
+        this.current = current;
+    }
+
     public String login() {
         User user = userService.getByUsername(username);
 
         if (("admin".equalsIgnoreCase(username) && "admin".equalsIgnoreCase(password)) || (user != null && user.getPassword().equals(password))) {
-//            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "", "Congratulations! You've successfully logged in.");
-//            FacesContext.getCurrentInstance().addMessage("loginForm:password", msg);
+            userService.setCurrentUser(user);
             return "availableProducts?faces-redirect=true";
         } else {
             FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "", "Incorrect username and/or password");

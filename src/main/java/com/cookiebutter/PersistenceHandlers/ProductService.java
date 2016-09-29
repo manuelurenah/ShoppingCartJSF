@@ -109,6 +109,15 @@ public class ProductService {
         return list;
     }
 
+    public double calcTotalPrice(List<Product> selected) {
+        double total = 0.0;
+        for (Product p : selected) {
+            total += p.getPrice() * p.getQuantity();
+        }
+
+        return total;
+    }
+
     public List<Product> getProducts() {
         products = (ArrayList<Product>)FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("products");
         if(products == null) {

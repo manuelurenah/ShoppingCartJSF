@@ -12,6 +12,10 @@
 
     <ui:define name="pageTitle">JSF Shopping Cart</ui:define>
 
+    <f:metadata>
+        <f:viewAction action="#{cart.getTotalPrice}" />
+    </f:metadata>
+
     <ui:define name="header">
         <ui:include src="WEB-INF/components/header.xhtml" />
         <ui:include src="WEB-INF/components/navbar.xhtml" />
@@ -21,7 +25,9 @@
         <h:form>
             <b:container layout="fluid">
                 <b:row>
-                    <b:column colXs="2" colMd="2" offset="10" >
+                    <b:column colXs="2" colMd="2" offset="10" rendered="#{not empty cart.selectedProducts}" >
+                        <h4 class="text-justify">Total:</h4>
+                        <h4 class="text-justify" style="color: #337ab7;">$#{cart.cartTotal}</h4>
                         <b:commandButton look="success" value="#{msg.buy_message}" style="width: 100%; margin-bottom: 8px;" />
                     </b:column>
                 </b:row>
@@ -39,12 +45,15 @@
                         </f:facet>
                         <b:row style="display:flex; flex-wrap:wrap">
                             <b:column colXs="3" styleClass="text-center" style="overflow:hidden; height: 200px; display:flex; align-self:center;" rendered="#{not empty product.images}">
-                                <p:graphicImage value="#{productsBean.renderProductImage()}" style="display:flex;align-self:center;margin:auto;width: 100%;" />
+                                <p:graphicImage value="#{productsBean.renderProductImage()}" style="display:flex;align-self:center;margin:auto;width: 100%;">
+                                    <f:param name="imgName" value="${product.images.get(0).fileName}" />
+                                    <f:param name="productId" value="#{product.id}" />
+                                </p:graphicImage>
                             </b:column>
                             <b:column colXs="#{ product.images.size() == 0 ? 10 : 7}">
                                 <h3>#{product.name}</h3>
                                 <h4 style="color: #337ab7;">$#{product.price}</h4>
-                                <h6>#{msg.products_form_product_qty} #{productDetail.selectedQty}</h6>
+                                <h6>#{msg.products_form_product_qty} #{product.quantity}</h6>
                                 <h:form>
                                     <p:commandLink value="#{msg.delete_message}" action="#{cart.removeFromCart(product)}"/>
                                 </h:form>
