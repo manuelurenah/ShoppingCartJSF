@@ -8,6 +8,7 @@ import javax.ejb.Stateless;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -118,14 +119,16 @@ public class ProductService {
         return total;
     }
 
-    public void reduceAvailableProducts() {
-        for (Product select : selectedProducts) {
-            for (Product p : products) {
+    public void reduceAvailableProducts(List<Product> selection) {
+        products = getProducts();
+        for (Product select : selection) {
+            Iterator<Product> iterator = products.iterator();
+            while(iterator.hasNext()) {
+                Product p = iterator.next();
                 if (p.getId() == select.getId()) {
-                    int actualQty = p.getQuantity();
-                    int newQty = actualQty - select.getQuantity();
+                    int newQty = p.getQuantity() - select.getQuantity();
                     if (newQty <= 0) {
-                        deleteById(p.getId());
+                        iterator.remove();
                     } else {
                         p.setQuantity(newQty);
                         update(p);

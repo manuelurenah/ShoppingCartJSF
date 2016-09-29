@@ -11,6 +11,7 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -36,7 +37,8 @@ public class CartBean {
         cartTotal = 0.0;
     }
 
-    public String addToCart(Product p, int qty) {
+    public String addToCart(int id, int qty) {
+        Product p = productService.getById(id);
         p.setQuantity(qty);
         this.selectedProducts.add(p);
         productService.setSelectedProducts(selectedProducts);
@@ -60,7 +62,7 @@ public class CartBean {
         Transaction trans = new Transaction(pId, pQty);
         transactionService.add(trans);
 
-        productService.reduceAvailableProducts();
+        productService.reduceAvailableProducts(selectedProducts);
 
         return "availableProducts?faces-redirect=true";
     }
